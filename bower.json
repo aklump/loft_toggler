@@ -1,0 +1,10 @@
+{
+    "ignore": [
+        ".web_package",
+        "web_package.info",
+        ".gitignore"
+    ],
+    "main": [
+        "LoftToggler.js"
+    ]
+}
