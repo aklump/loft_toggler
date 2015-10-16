@@ -6,5 +6,12 @@
     ],
     "main": [
         "LoftToggler.js"
-    ]
+    ],
+    "name": "Loft Toggler",
+    "version": "1.0",
+    "homepage": "http://www.intheloftstudios.com/packages/js/loft_toggler",
+    "authors": [
+        "Aaron Klump <sourcecode@intheloftstudios.com>"
+    ],
+    "description": "Handles the classes and callbacks for a toggled element."
 }
