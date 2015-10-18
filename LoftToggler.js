@@ -1,5 +1,5 @@
 /**
- * Loft Toggler JavaScript Module v1.0
+ * Loft Toggler JavaScript Module v1.0.1
  * http://www.intheloftstudios.com/packages/js/loft_toggler
  *
  * Handles the classes and callbacks for a toggled element.
@@ -7,7 +7,7 @@
  * Copyright 2015, Aaron Klump <sourcecode@intheloftstudios.com>
  * @license Dual licensed under the MIT or GPL Version 2 licenses.
  *
- * Date: Sun Oct 18 12:27:37 PDT 2015
+ * Date: Sun Oct 18 12:32:53 PDT 2015
  */
 /**
  *
@@ -111,7 +111,7 @@ var LoftToggler = (function ($) {
    * @param onToggleOff mixed|function A value to return when toggled on.
    */ 
   function LoftToggler ($element, settings, onToggleOn, onToggleOff) {
-    this.version = "1.0";
+    this.version = "1.0.1";
     this.$el     = $element;
 
     // When settings is passed as a string it will be the classBase.
