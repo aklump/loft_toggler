@@ -1,5 +1,5 @@
 name = "Loft Toggler"
 description = "Handles the classes and callbacks for a toggled element."
-version = "1.0.1"
+version = "1.0.2"
 author = Aaron Klump <sourcecode@intheloftstudios.com>
 homepage = "http://www.intheloftstudios.com/packages/js/loft_toggler"
