@@ -1,5 +1,5 @@
 /**
- * Loft Toggler JavaScript Module v1.0.3
+ * Loft Toggler JavaScript Module v1.0.4
  * http://www.intheloftstudios.com/packages/js/loft_toggler
  *
  * Handles the classes and callbacks for a toggled element.
@@ -7,7 +7,7 @@
  * Copyright 2015-2016, Aaron Klump <sourcecode@intheloftstudios.com>
  * @license Dual licensed under the MIT or GPL Version 2 licenses.
  *
- * Date: Mon Mar  7 15:56:12 PST 2016
+ * Date: Mon Mar  7 15:57:29 PST 2016
  */
 /**
  *
