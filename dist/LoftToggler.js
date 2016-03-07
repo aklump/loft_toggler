@@ -4,10 +4,10 @@
  *
  * Handles the classes and callbacks for a toggled element.
  *
- * Copyright 2015, Aaron Klump <sourcecode@intheloftstudios.com>
+ * Copyright 2015-2016, Aaron Klump <sourcecode@intheloftstudios.com>
  * @license Dual licensed under the MIT or GPL Version 2 licenses.
  *
- * Date: Thu Nov 19 16:16:37 PST 2015
+ * Date: Mon Mar  7 15:56:12 PST 2016
  */
 /**
  *
@@ -111,21 +111,22 @@ var LoftToggler = (function ($) {
    * @param onToggleOff mixed|function A value to return when toggled on.
    */ 
   function LoftToggler ($element, settings, onToggleOn, onToggleOff) {
-    this.version = "1.0.3";
-    this.$el     = $element;
+    var _ = this;
+    _.version = "1.0.3";
+    _.$el     = $element;
 
     // When settings is passed as a string it will be the classBase.
     if (typeof settings === 'string') {
       settings = {classBase: settings};
     }
-    this.settings = $.extend({}, this.options, settings, {
+    _.settings = $.extend({}, _.options, settings, {
       onToggleOn  : onToggleOn,
       onToggleOff : onToggleOff,
     });
 
-    this.classes = {
-      toggledOn  : this.settings.toggledOnPrefix + this.settings.classBase,
-      toggledOff : this.settings.toggledOffPrefix + this.settings.classBase,
+    _.classes = {
+      toggledOn  : _.settings.toggledOnPrefix + _.settings.classBase,
+      toggledOff : _.settings.toggledOffPrefix + _.settings.classBase,
     };
   }
 
@@ -155,9 +156,11 @@ var LoftToggler = (function ($) {
    * @return mixed
    */
   LoftToggler.prototype.toggle = function () {
+    var _ = this;
+    _.stateBefore = _.getState();
     var args = [].slice.call(arguments);
-    var method = this.getState() ? 'toggleOff' : 'toggleOn';
-    return this[method].apply(this, args);
+    var method = _.getState() ? 'toggleOff' : 'toggleOn';
+    return _[method].apply(_, args);
   };
 
   /**
@@ -168,18 +171,19 @@ var LoftToggler = (function ($) {
    * @return this;
    */
   LoftToggler.prototype.setState = function (state) {
+    var _ = this;
     if (state) {
-      this.$el
-      .addClass(this.classes.toggledOn)
-      .removeClass(this.classes.toggledOff);
+      _.$el
+      .addClass(_.classes.toggledOn)
+      .removeClass(_.classes.toggledOff);
     }
     else {
-      this.$el
-      .removeClass(this.classes.toggledOn)
-      .addClass(this.classes.toggledOff);
+      _.$el
+      .removeClass(_.classes.toggledOn)
+      .addClass(_.classes.toggledOff);
     }
 
-    return this;
+    return _;
   };
 
   /**
@@ -188,7 +192,8 @@ var LoftToggler = (function ($) {
    * @return bool
    */
   LoftToggler.prototype.getState = function () {
-    return this.$el.hasClass(this.classes.toggledOn);
+    var _ = this;
+    return _.$el.hasClass(_.classes.toggledOn);
   };
 
   /**
@@ -199,13 +204,15 @@ var LoftToggler = (function ($) {
    * @return mixed The (return) value of the onToggleOn.
    */
   LoftToggler.prototype.toggleOn = function () {
-    this.setState(true);
-    if (typeof this.settings.onToggleOn !== 'function') {
-      return this.settings.onToggleOn;
+    var _ = this;
+    _.stateBefore = _.getState();
+    _.setState(true);
+    if (typeof _.settings.onToggleOn !== 'function') {
+      return _.settings.onToggleOn;
     }
     var args = [].slice.call(arguments);
-    args.unshift(this);
-    return this.settings.onToggleOn.apply(this, args);
+    args.unshift(_);
+    return _.settings.onToggleOn.apply(_, args);
   };
 
   /**
@@ -216,13 +223,15 @@ var LoftToggler = (function ($) {
    * @return mixed The (return) value of the onToggleOff.
    */  
   LoftToggler.prototype.toggleOff = function () {
-    this.setState(false);
-    if (typeof this.settings.onToggleOff !== 'function') {
-      return this.settings.onToggleOff;
+    var _ = this;
+    _.stateBefore = _.getState();
+    _.setState(false);
+    if (typeof _.settings.onToggleOff !== 'function') {
+      return _.settings.onToggleOff;
     }
     var args = [].slice.call(arguments);
-    args.unshift(this);
-    return this.settings.onToggleOff.apply(this, args);
+    args.unshift(_);
+    return _.settings.onToggleOff.apply(_, args);
   };
 
   return  LoftToggler;
