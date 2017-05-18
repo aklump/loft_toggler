@@ -1,13 +1,13 @@
 /**
- * Loft Toggler JavaScript Module v1.0.4
+ * Loft Toggler JavaScript Module v1.0.5
  * http://www.intheloftstudios.com/packages/js/loft_toggler
  *
  * Handles the classes and callbacks for a toggled element.
  *
- * Copyright 2015-2016, Aaron Klump <sourcecode@intheloftstudios.com>
+ * Copyright 2015-2017, Aaron Klump <sourcecode@intheloftstudios.com>
  * @license Dual licensed under the MIT or GPL Version 2 licenses.
  *
- * Date: Mon Mar  7 15:57:29 PST 2016
+ * Date: Thu May 18 10:46:27 PDT 2017
  */
 /**
  *
@@ -15,19 +15,19 @@
  * element is clicked, such as display/hide a menu. It handles the css classes
  * and allows for callbacks associated with each state. Finally it provides a
  * means of triggering each state and toggling between them.
- * 
+ *
  * Be aware that the callbacks receive the following arguments as well as
  * any arguments passed to them.
  * - LoftToggler instance
  *
  * EXAMPLE ONE:
- * 
+ *
  * The most basic usage with no callbacks, using default classes:
  * @code
  *   var toggler = new LoftToggler($('.toggle'));
  *   toggler.toggle();
  * @endcode
- * 
+ *
  * The same thing showing jQuery syntax:
  * @code
  *   $('.toggle').loftToggler();
@@ -36,23 +36,23 @@
  * @endcode
  *
  * Or written slightly differently:
- * @code   
+ * @code
  *   var toggler = $('.toggle').loftToggler().data('loftToggler');
  *   toggler.toggle();
  * @endcode
- * 
- * 
+ *
+ *
  * EXAMPLE TWO:
- * 
+ *
  * In this example we modify the baseClass from 'toggledOn' to 'toggled'
  * so that we end up with 'is-toggled' and 'is-not-toggled'.
  * @code
  *   var toggler = new LoftToggler($('.toggle'), 'toggled');
  * @endcode
  *
- * 
+ *
  * EXAMPLE THREE:
- * 
+ *
  * In this example we add callbacks to be fired on each event:
  * @code
  *   // Set up an object to provide our callbacks that references 'this' in
@@ -81,7 +81,7 @@
  *
  *
  * EXAMPLE FOUR
- * 
+ *
  * To defind new options for all instances of LoftToggler do something like
  * this, but it must be done before you instantiate your objects.
  * @code
@@ -92,41 +92,41 @@
  * @endcode
  */
 var LoftToggler = (function ($) {
-"use strict";
+  "use strict";
 
-  $.fn.loftToggler = function(settings, onToggleOn, onToggleOff) {
+  $.fn.loftToggler = function (settings, onToggleOn, onToggleOff) {
     return this.each(function () {
       var $el = $(this);
-        $el.data('loftToggler', new LoftToggler($el, settings, onToggleOn, onToggleOff));
+      $el.data('loftToggler', new LoftToggler($el, settings, onToggleOn, onToggleOff));
     });
   };
 
   /**
    * Constructor
-   * 
+   *
    * @param $element jQuery object The element that will receive the toggling
    *   classes.
    * @param classBase string The common suffix of is- and is-not-.
    * @param onToggleOn mixed|function A value to return when toggled on.
    * @param onToggleOff mixed|function A value to return when toggled on.
-   */ 
-  function LoftToggler ($element, settings, onToggleOn, onToggleOff) {
+   */
+  function LoftToggler($element, settings, onToggleOn, onToggleOff) {
     var _ = this;
     _.version = "1.0.3";
-    _.$el     = $element;
+    _.$el = $element;
 
     // When settings is passed as a string it will be the classBase.
     if (typeof settings === 'string') {
       settings = {classBase: settings};
     }
     _.settings = $.extend({}, _.options, settings, {
-      onToggleOn  : onToggleOn,
-      onToggleOff : onToggleOff,
+      onToggleOn: onToggleOn,
+      onToggleOff: onToggleOff,
     });
 
     _.classes = {
-      toggledOn  : _.settings.toggledOnPrefix + _.settings.classBase,
-      toggledOff : _.settings.toggledOffPrefix + _.settings.classBase,
+      toggledOn: _.settings.toggledOnPrefix + _.settings.classBase,
+      toggledOff: _.settings.toggledOffPrefix + _.settings.classBase,
     };
   }
 
@@ -141,11 +141,11 @@ var LoftToggler = (function ($) {
    * @endcode
    */
   LoftToggler.prototype.options = {
-    toggledOnPrefix  : 'is-',
-    toggledOffPrefix : 'is-not-',
-    classBase        : 'toggled',
-    onToggleOn       : false,
-    onToggleOff      : false
+    toggledOnPrefix: 'is-',
+    toggledOffPrefix: 'is-not-',
+    classBase: 'toggled',
+    onToggleOn: false,
+    onToggleOff: false
   };
 
   /**
@@ -200,7 +200,7 @@ var LoftToggler = (function ($) {
    * Sets state to true AND returns onToggleOn
    *
    * @params... Optional.  Passed to the callbacks.
-   * 
+   *
    * @return mixed The (return) value of the onToggleOn.
    */
   LoftToggler.prototype.toggleOn = function () {
@@ -217,11 +217,11 @@ var LoftToggler = (function ($) {
 
   /**
    * Sets state to false AND returns onToggleOff
-   * 
+   *
    * @params... Optional.  Passed to the callbacks.
-   * 
+   *
    * @return mixed The (return) value of the onToggleOff.
-   */  
+   */
   LoftToggler.prototype.toggleOff = function () {
     var _ = this;
     _.stateBefore = _.getState();
@@ -234,5 +234,5 @@ var LoftToggler = (function ($) {
     return _.settings.onToggleOff.apply(_, args);
   };
 
-  return  LoftToggler;
+  return LoftToggler;
 })(jQuery);
